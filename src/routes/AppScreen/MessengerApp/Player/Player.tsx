@@ -99,15 +99,6 @@ export default function Player({ script, onExit }: PlayerProps) {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
   }, [revealed, typingId])
 
-  // keep the typing field focused whenever it's on screen (i.e. not the voice
-  // branch). The input is read-only — not disabled — while replies auto-play,
-  // so it can legitimately hold focus the whole time; this just re-asserts it
-  // across turn changes and after the voice UI swaps back to text, so the actor
-  // never has to click the field again mid-take.
-  useEffect(() => {
-    if (!awaitingVoice) inputRef.current?.focus()
-  }, [awaitingVoice, revealed])
-
   /**
    * Auto-play every consecutive incoming ('them') message starting at `index`,
    * honoring each message's reading pause (delay before dots) and typing time
@@ -164,6 +155,8 @@ export default function Player({ script, onExit }: PlayerProps) {
     if (!pending) return
     const sentIndex = revealed
     setInput('')
+    // drop focus from the input once the line is sent
+    inputRef.current?.blur()
     setRevealed(sentIndex + 1)
     // auto-trigger any incoming replies that follow
     playReplies(sentIndex + 1)

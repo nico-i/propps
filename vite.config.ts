@@ -19,6 +19,9 @@ export default defineConfig({
         name: 'Propps — filmable app stand-ins',
         short_name: 'Propps',
         description: 'Parody stand-ins for popular apps, built for filmmaking.',
+        display: 'fullscreen',
+        // Newer browsers honor the first supported mode; older ones read `display`.
+        display_override: ['fullscreen', 'standalone'],
         theme_color: '#0b141a',
         background_color: '#0b141a',
         icons: [
