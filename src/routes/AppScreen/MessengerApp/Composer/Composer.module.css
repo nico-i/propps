@@ -1,0 +1,132 @@
+.composer {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.head h2 {
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+.homeLink {
+  color: #8696a0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.homeLink:hover {
+  color: #e9edef;
+}
+
+.playBtn {
+  background: #1f8f6f;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.playBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ----- sectioned layout: contact card vs conversation ----- */
+.sectionTitle {
+  margin: 0 0 2px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8696a0;
+}
+
+.sectionHint {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  color: #5b6b75;
+  line-height: 1.4;
+}
+
+.contactCard {
+  background: #111b21;
+  border: 1px solid #222d34;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactBody {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.contactFields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contactFields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8696a0;
+  gap: 4px;
+}
+.contactFields input {
+  background: #202c33;
+  border: 1px solid #2a3942;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #e9edef;
+  font-size: 0.95rem;
+}
+
+.scriptSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msgList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addRow {
+  display: flex;
+  gap: 10px;
+}
+.addRow button {
+  flex: 1;
+  background: #202c33;
+  color: #e9edef;
+  border: 1px dashed #2a3942;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}

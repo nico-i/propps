@@ -1,0 +1,25 @@
+.root {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0b141a;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+}
+
+.missing {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #e9edef;
+}
+.missingLink {
+  color: #1f8f6f;
+}

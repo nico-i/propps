@@ -1,0 +1,60 @@
+.clip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 180px;
+}
+
+.playBtn {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+.me .playBtn {
+  background: rgba(255, 255, 255, 0.22);
+}
+.them .playBtn {
+  background: #1f8f6f;
+}
+.playBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.waveWrap {
+  flex: 1;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 26px;
+}
+
+.bar {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 2px;
+  background: rgba(233, 237, 239, 0.35);
+}
+.barFilled {
+  background: #e9edef;
+}
+.them .barFilled {
+  background: #4fd1aa;
+}
+
+.duration {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  color: rgba(233, 237, 239, 0.7);
+  font-variant-numeric: tabular-nums;
+}

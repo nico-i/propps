@@ -1,0 +1,10 @@
+.day {
+  align-self: center;
+  background: #182229;
+  color: #8696a0;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

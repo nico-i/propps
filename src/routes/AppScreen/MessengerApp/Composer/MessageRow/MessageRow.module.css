@@ -1,0 +1,181 @@
+.msgEdit {
+  background: #111b21;
+  border: 1px solid #222d34;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.msgEdit.me {
+  border-left: 3px solid #1f8f6f;
+}
+.msgEdit.them {
+  border-left: 3px solid #8696a0;
+}
+
+.msgEditControls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sideToggle {
+  background: #2a3942;
+  color: #e9edef;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  min-width: 72px;
+}
+
+.timeInput {
+  width: 64px;
+  background: #202c33;
+  border: 1px solid #2a3942;
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: #e9edef;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.del {
+  margin-left: auto;
+  background: transparent;
+  color: #f15c6d;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.msgText {
+  background: #202c33;
+  border: 1px solid #2a3942;
+  border-radius: 6px;
+  padding: 8px;
+  color: #e9edef;
+  font-size: 0.95rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.delayRow {
+  display: flex;
+  gap: 10px;
+}
+
+.delayField {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #8696a0;
+}
+
+.delayInputWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #202c33;
+  border: 1px solid #2a3942;
+  border-radius: 6px;
+  padding: 0 8px;
+}
+.delayInputWrap input {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e9edef;
+  font-size: 0.85rem;
+  padding: 6px 0;
+}
+.delayUnit {
+  font-size: 0.7rem;
+  color: #5b6b75;
+}
+
+.delayNote {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #5b6b75;
+  font-style: italic;
+}
+
+/* ----- message kind toggle (Text / Voice) ----- */
+.kindToggle {
+  display: inline-flex;
+  border: 1px solid #2a3942;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.kindToggle button {
+  background: #202c33;
+  color: #8696a0;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+.kindToggle button + button {
+  border-left: 1px solid #2a3942;
+}
+.kindActive {
+  background: #1f8f6f !important;
+  color: #fff !important;
+}
+
+/* ----- voice editor ----- */
+.voiceEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recStart,
+.recStop {
+  align-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #fff;
+}
+.recStart {
+  background: #b3243b;
+}
+.recStop {
+  background: #1f8f6f;
+  font-variant-numeric: tabular-nums;
+}
+
+.voicePreview {
+  background: #202c33;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.recError {
+  font-size: 0.75rem;
+  color: #f15c6d;
+}
+
+.voiceMeNote {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #5b6b75;
+  font-style: italic;
+}

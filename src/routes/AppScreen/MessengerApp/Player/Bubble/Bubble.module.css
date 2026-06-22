@@ -1,0 +1,43 @@
+.bubbleRow {
+  display: flex;
+}
+.bubbleRow.me {
+  justify-content: flex-end;
+}
+.bubbleRow.them {
+  justify-content: flex-start;
+}
+
+.bubble {
+  position: relative;
+  max-width: 78%;
+  padding: 6px 9px 8px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  word-wrap: break-word;
+}
+.me .bubble {
+  background: #005c4b;
+  border-top-right-radius: 2px;
+}
+.them .bubble {
+  background: #202c33;
+  border-top-left-radius: 2px;
+}
+
+.bubbleText {
+  white-space: pre-wrap;
+}
+
+.bubbleTime {
+  float: right;
+  font-size: 0.62rem;
+  color: rgba(233, 237, 239, 0.6);
+  margin: 6px 0 -2px 8px;
+}
+
+/* voice bubble: a bit wider, no text wrapping pressure */
+.bubbleVoice {
+  min-width: 200px;
+}

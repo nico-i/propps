@@ -1,0 +1,102 @@
+.root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px 24px;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, #fff, #9aa7b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  margin: 8px 0 0;
+  color: #8696a0;
+  font-size: 0.98rem;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  --accent: #1f8f6f;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 16px;
+  background: #161d23;
+  border: 1px solid #232d35;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: #1b242b;
+}
+
+.glyph {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  flex-shrink: 0;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cardName {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.cardStandin {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.cardTagline {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #8696a0;
+  line-height: 1.35;
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: 28px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #5b6b75;
+  line-height: 1.5;
+}

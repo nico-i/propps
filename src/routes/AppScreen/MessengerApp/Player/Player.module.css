@@ -1,0 +1,197 @@
+.phone {
+  height: 100%;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #0b141a;
+  /* subtle doodle texture via layered gradients, fully original */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #202c33;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.back {
+  background: transparent;
+  border: none;
+  color: #e9edef;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+   padding: 0 4px 0 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1f8f6f;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.chatHeadMeta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.chatName {
+  font-weight: 600;
+}
+.chatStatus {
+  font-size: 0.78rem;
+  color: #8696a0;
+}
+
+.chatScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 10px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #202c33;
+}
+
+.inputField {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #2a3942;
+  border-radius: 999px;
+  padding: 0 14px;
+}
+
+.textInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e9edef;
+  font-size: 1rem;
+  padding: 11px 0;
+}
+.textInput::placeholder {
+  color: #8696a0;
+}
+.textInput:read-only {
+  cursor: default;
+}
+
+.sendBtn {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #1f8f6f;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.sendBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ----- outgoing voice recording bar ----- */
+.recBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2a3942;
+  border-radius: 999px;
+  padding: 6px 6px 6px 16px;
+  min-height: 46px;
+}
+
+.recPrompt {
+  flex: 1;
+  color: #8696a0;
+  font-size: 0.9rem;
+}
+
+.micBtn {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #1f8f6f;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.recDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f15c6d;
+  flex-shrink: 0;
+  animation: recPulse 1s infinite ease-in-out;
+}
+@keyframes recPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.recTime {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #e9edef;
+}
+
+.recHint {
+  flex: 1;
+  color: #8696a0;
+  font-size: 0.85rem;
+}
+
+.recCancel {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #8696a0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.recCancel:hover {
+  color: #f15c6d;
+}

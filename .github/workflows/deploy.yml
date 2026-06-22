@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow the deploy job to publish to Pages via OIDC.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One concurrent Pages deployment; let in-flight runs finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      # GitHub Pages serves 404.html for any unmatched path. For a SPA with
+      # client-side routes (e.g. /app/:id), mirror index.html to 404.html so
+      # cold deep-links boot the app instead of showing Pages' 404.
+      - name: SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

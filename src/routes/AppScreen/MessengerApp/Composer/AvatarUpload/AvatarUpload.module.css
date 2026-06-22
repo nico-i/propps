@@ -1,0 +1,70 @@
+.avatarUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.avatarPreview {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.avatarImageClip {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1f8f6f;
+  display: grid;
+  place-items: center;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatarLetter {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.avatarEditBadge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  transform: translate(50%, 50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #202c33;
+  color: #e9edef;
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 2px #111b21;
+}
+
+.avatarRemove {
+  background: transparent;
+  border: none;
+  color: #8696a0;
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 0;
+}
+.avatarRemove:hover {
+  color: #f15c6d;
+}

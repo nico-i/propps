@@ -1,0 +1,22 @@
+.handle {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: #5b6b75;
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 4px 6px;
+  cursor: grab;
+  touch-action: none;
+}
+.handle:hover {
+  color: #8696a0;
+}
+.handle:active {
+  cursor: grabbing;
+}
+
+.dragging {
+  /* Keep the grabbed row readable as it floats over the list. */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
