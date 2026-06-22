@@ -27,6 +27,12 @@ body,
 body {
   min-width: 320px;
   background-color: #0b141a;
+  /* App owns its own scroll regions (.chatScroll, Composer). Lock the document
+     itself so the page never scrolls: stops mobile overscroll-bounce from
+     revealing the browser URL bar and prevents the keyboard from scrolling the
+     whole layout (header would otherwise slide off the top). */
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 #root {
