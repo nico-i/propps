@@ -25,9 +25,7 @@ export default defineConfig({
         id: '/',
         start_url: '/',
         scope: '/',
-        display: 'fullscreen',
-        // Newer browsers honor the first supported mode; older ones read `display`.
-        display_override: ['fullscreen', 'standalone'],
+        display: 'standalone',
         theme_color: '#0b141a',
         background_color: '#0b141a',
         icons: [
@@ -72,4 +70,3 @@ export default defineConfig({
     })
   ],
 })
-
