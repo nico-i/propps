@@ -137,42 +137,6 @@
 }
 
 /* ----- voice editor ----- */
-.voiceEdit {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.recStart,
-.recStop {
-  align-self: flex-start;
-  border: none;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  color: #fff;
-}
-.recStart {
-  background: #b3243b;
-}
-.recStop {
-  background: #1f8f6f;
-  font-variant-numeric: tabular-nums;
-}
-
-.voicePreview {
-  background: #202c33;
-  border-radius: 8px;
-  padding: 8px 10px;
-}
-
-.recError {
-  font-size: 0.75rem;
-  color: #f15c6d;
-}
-
 .voiceMeNote {
   margin: 0;
   font-size: 0.72rem;

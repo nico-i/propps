@@ -1,0 +1,50 @@
+.audioUpload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uploadBtn {
+  align-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #fff;
+  background: #1f8f6f;
+}
+.uploadBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: #8696a0;
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 0;
+}
+.removeBtn:hover {
+  color: #f15c6d;
+}
+
+.preview {
+  background: #202c33;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.error {
+  font-size: 0.75rem;
+  color: #f15c6d;
+}

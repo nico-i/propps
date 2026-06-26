@@ -38,6 +38,13 @@ export default function Player({ script, onExit }: PlayerProps) {
   const timersRef = useRef<number[]>([])
   // invalidation token: bumping it abandons any in-flight reply chain
   const runRef = useRef(0)
+  // latest reveal inputs for the native `beforeinput` listener (below). The
+  // listener is attached once and would otherwise close over stale state, so
+  // we mirror the current revealed length and pending preset text here.
+  const revealRef = useRef<{ len: number; preset: string | null }>({
+    len: 0,
+    preset: null,
+  })
 
   // outgoing voice notes are faked: the actor "records" only to set the clip
   // length. We run a plain stopwatch (no mic, nothing stored) and use the
@@ -99,6 +106,40 @@ export default function Player({ script, onExit }: PlayerProps) {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
   }, [revealed, typingId])
 
+  // mirror the latest reveal inputs for the native `beforeinput` listener
+  useEffect(() => {
+    revealRef.current = { len: input.length, preset: pending?.text ?? null }
+  })
+
+  // Reveal the scripted line one character at a time WITHOUT ever letting the
+  // real keypress reach the field. We intercept `beforeinput` and call
+  // `preventDefault()`, so the actor's actual characters never enter the DOM
+  // input and — crucially — never reach the OS keyboard. That stops the native
+  // autocorrect / prediction strip from surfacing the gibberish they mash.
+  //
+  // We use a native listener (attached once) rather than React's synthetic
+  // onBeforeInput so the cancellation is unambiguous across mobile keyboards
+  // (iOS Safari, Gboard). State is read from `revealRef` to avoid stale values.
+  useEffect(() => {
+    const el = inputRef.current
+    if (!el) return
+    const onBeforeInput = (e: InputEvent) => {
+      // block the real character from ever landing in the field / OS predictor
+      e.preventDefault()
+      const { len, preset } = revealRef.current
+      if (preset === null) return
+      // any insertion advances the reveal; any deletion retreats it, regardless
+      // of which key was actually pressed
+      const deleting = e.inputType.startsWith('delete')
+      const nextLen = deleting
+        ? Math.max(len - 1, 0)
+        : Math.min(len + 1, preset.length)
+      setInput(preset.slice(0, nextLen))
+    }
+    el.addEventListener('beforeinput', onBeforeInput)
+    return () => el.removeEventListener('beforeinput', onBeforeInput)
+  }, [])
+
   /**
    * Auto-play every consecutive incoming ('them') message starting at `index`,
    * honoring each message's reading pause (delay before dots) and typing time
@@ -138,17 +179,6 @@ export default function Player({ script, onExit }: PlayerProps) {
     }
 
     step(index)
-  }
-
-  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!pending) return
-    const preset = pending.text
-    const grew = e.target.value.length > input.length
-    // reveal/hide preset characters regardless of which key was pressed
-    const nextLen = grew
-      ? Math.min(input.length + 1, preset.length)
-      : Math.max(input.length - 1, 0)
-    setInput(preset.slice(0, nextLen))
   }
 
   function onSend() {
@@ -297,9 +327,21 @@ export default function Player({ script, onExit }: PlayerProps) {
                 ref={inputRef}
                 className={styles.textInput}
                 value={input}
-                onChange={onInputChange}
+                // The reveal is driven by the native `beforeinput` listener
+                // above, which cancels every real keystroke. This no-op only
+                // satisfies React's controlled-input contract; it never fires
+                // from typing because the character is prevented from landing.
+                onChange={() => {}}
                 onKeyDown={onInputKeyDown}
-                placeholder={ 'Type a message'}
+                // Hide the actor's real keystrokes from the OS keyboard's
+                // autocorrect / prediction strip. Suppressing native text
+                // assistance is a second line of defense behind the
+                // `beforeinput` interception.
+                autoCorrect="off"
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                placeholder="Type a message"
                 aria-label="Message"
               />
             </div>

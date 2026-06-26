@@ -1,7 +1,5 @@
 import { type ChatMessage, type MessageKind } from '../../MessengerApp'
-import { useRecorder } from '../../useRecorder'
-import { newAudioId, putAudio } from '../../audioStore'
-import VoiceClip from '../../VoiceClip'
+import AudioUpload from '../AudioUpload/AudioUpload'
 import NumberField from '../NumberField/NumberField'
 import SortableRow from '../SortableRow/SortableRow'
 import styles from './MessageRow.module.css'
@@ -40,19 +38,10 @@ export default function MessageRow({
   lockSender = false,
   pinned = false,
 }: MessageRowProps) {
-  const recorder = useRecorder()
   const isVoice = m.kind === 'voice'
   // Delay fields only make sense for the animated playback list; past history
   // renders instantly with no typing dots.
   const showDelays = variant === 'playback'
-
-  async function handleStop() {
-    const result = await recorder.stop()
-    if (!result) return
-    const id = m.audioId ?? newAudioId()
-    await putAudio(id, result.blob)
-    onUpdate({ audioId: id, durationSec: Math.max(1, Math.round(result.durationSec)) })
-  }
 
   return (
     <SortableRow id={m.id} disabled={pinned}>
@@ -104,27 +93,14 @@ export default function MessageRow({
 
           {isVoice ? (
             m.sender === 'them' ? (
-              <div className={styles.voiceEdit}>
-                {recorder.state === 'recording' ? (
-                  <button className={styles.recStop} onClick={handleStop} type="button">
-                    ■ Stop · {recorder.elapsedSec.toFixed(1)}s
-                  </button>
-                ) : (
-                  <button
-                    className={styles.recStart}
-                    onClick={() => void recorder.start()}
-                    type="button"
-                  >
-                    ● {m.audioId ? 'Re-record' : 'Record'}
-                  </button>
-                )}
-                {m.audioId && recorder.state !== 'recording' && (
-                  <div className={styles.voicePreview}>
-                    <VoiceClip audioId={m.audioId} durationSec={m.durationSec} tone={m.sender} />
-                  </div>
-                )}
-                {recorder.error && <span className={styles.recError}>{recorder.error}</span>}
-              </div>
+              // Incoming voice notes are authored from a real audio file the
+              // user uploads; its measured length drives the bubble + typing.
+              <AudioUpload
+                audioId={m.audioId}
+                durationSec={m.durationSec}
+                tone={m.sender}
+                onChange={(next) => onUpdate(next)}
+              />
             ) : variant === 'playback' ? (
               // In the live conversation, outgoing voice notes are "recorded" by the
               // actor during playback (the fake-recording stopwatch), so there is
@@ -178,7 +154,7 @@ export default function MessageRow({
               {isVoice ? (
                 <span
                   className={styles.delayNote}
-                  title="Recording indicator matches the clip length"
+                  title="Typing indicator matches the clip length"
                 >
                   Typing time = voice length
                 </span>
